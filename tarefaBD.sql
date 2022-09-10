@@ -1,56 +1,54 @@
-use sprint1;
+-- Criar banco de dados
+create database atleta;
 
-create table Curso (
-idCurso int primary key,
-nome varchar(50),
-sigla varchar(3),
-coordenador varchar (40)
-);
-insert into Curso values 
-(1,'Analise e des. de sistemas', 'BD', 'Mônica'),
-(2,'Ciência da informação','CI', 'Vera'),
-(3,'Gestão e liderança', 'GL', 'Monteiro'),
-(4,'Matemática Avançada','MA', 'Ellen'),
-(5,'Banco de dados', 'BD', 'Vivivan');
+-- selecionar o banco de dados
+use atleta;
 
 
---  Exibir todos os dados da tabela.
-select * from Curso;
+-- criar table atleta
+Create table atleta(
+idAtleta int primary key,
+nome varchar (40),
+modalidade varchar (40),
+qtdMedalhas int );
 
---  Exibir apenas os coordenadores dos cursos
+-- Inserir dados na tabela 
+insert into atleta values
+( '1', 'Roberto', 'natacao', '8' ),
+( '2', 'Yuri', 'boxiador', '15'),
+( '3', 'Mateus', 'tenista', '6' );
 
-select * from Curso order by coordenador asc;
+-- Exibir todos os dados da tabela 
+select * from atleta;
 
--- Exibir apenas os dados dos cursos de uma determinada sigla.
-select sigla from Curso  where = 'BD', 'ADS';
+-- Exibir apenas os nomes e qtd de medalhas 
+select * from nome , qtdMedalhas;
 
--- Exibir os dados da tabela ordenados pelo nome do curso.
+-- Exibir apenas os dados de um atleta de uma determinada modalidade
+select * from atleta where modalidade = boxiador;
 
-select * from Curso order by nome asc;
+-- Exibir os dados da tabela ordenado pela modalidade
+select * from atleta order by modalidade asc;
 
--- Exibir os dados da tabela ordenados pelo nome do coordenador em ordem desc.
+-- Exibir os dados da tabela, ordenados pela quantidade de medalhas, em ordem decrescente
+select * from atleta order by medalhas desc;
 
-select * from Curso order by coordenador desc;
+-- Exibir os dados da tabela, dos atletas cujo nome contenha a letra s
+select * from atleta where nome like'%S%' ;
 
---  Exibir os dados da tabela, dos cursos cujo nome comece com uma determinada letra.
+-- Exibir os dados da tabela, dos atletas cujo nome comece com uma determinada letra.
+select * from atleta where nome like 'y%';
 
-select * from Curso where nome like 'c%';
+-- Exibir os dados da tabela, dos atletas cujo nome termine com a letra o.
+select * from atleta where nome like '%o';
 
---  Exibir os dados da tabela, dos cursos cujo nome termine com uma determinada letra.
+--  Exibir os dados da tabela, dos atletas cujo nome tenha a penúltima letra r.
+select * from atleta where nome like '%r_';
 
-select * from Curso where nome like '%a';
+drop table atleta;
 
--- Exibir os dados da tabela, dos cursos cujo nome tenha como segunda letra uma determinada letra.
 
-select * from Curso where nome like '_e%';
 
---  Exibir os dados da tabela, dos cursos cujo nome tenha como penúltima letra uma determinada letra.
-
-select * from Curso where nome like '%a_';
-
--- Elimine a tabela.
-
-drop table Curso;
 
 
 
